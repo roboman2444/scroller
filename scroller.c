@@ -62,7 +62,7 @@ int winwidth = 800;
 int winheight = 600;
 float aspect = 800.0/600.0;
 
-double timestretch = 5.0;
+double timestretch = 30.0;
 
 int main(const int argc, const char ** argv){
 
