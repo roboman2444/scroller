@@ -28,6 +28,7 @@ const char * lineshaderfrag = "\
 	uniform sampler2D tex;\n\
 	void main(){\n\
 		gl_FragColor = texture2D(tex,tc);\n\
+		gl_FragColor.rgb *= vec3(0.1,1.0,0.1);\n\
 	}\n\
 ";
 
