@@ -16,19 +16,26 @@ const char * lineshadervert = "\
 	attribute vec2 tcattrib;\n\
 	attribute vec2 posattrib;\n\
 	varying vec2 tc;\n\
+	varying vec2 pos;\n\
 	uniform float time;\n\
 	uniform float aspect;\n\
 	void main(){\n\
 		tc = tcattrib*vec2(aspect, 1.0) + vec2(1.,0.) * time;\n\
+		pos = posattrib;\n\
 		gl_Position = vec4(posattrib, 0., 1.);\n\
 	}\n\
 ";
 const char * lineshaderfrag = "\
 	varying vec2 tc;\n\
+	varying vec2 pos;\n\
 	uniform sampler2D tex;\n\
+	uniform float time;\n\
+	vec3 coltime(float t){\n\
+		return vec3(1.0) * sin(t*50.0 + 6.28318 * vec3(0.0, 0.33, 0.67));\n\
+	}\n\
 	void main(){\n\
 		gl_FragColor = texture2D(tex,tc);\n\
-		gl_FragColor.rgb *= vec3(0.1,1.0,0.1);\n\
+		gl_FragColor.rgb *= coltime(time + cos(pos.y* abs(0.5-time)));\n\
 	}\n\
 ";
 
